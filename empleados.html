@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Empleado - Ingreso de Horas</title>
+    <title>Empleado - Registro de Ingreso/Egreso</title>
     <style>
         /* Estilos */
         body {
@@ -51,14 +51,31 @@
             border: 1px solid #ccc;
             border-radius: 5px;
         }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>Registrar Horas</h1>
-        <form action="ingresar_horas.php" method="POST">
-            <input type="text" name="empleado_id" placeholder="ID de empleado" required />
-            <input type="number" name="horas_trabajadas" placeholder="Horas trabajadas" required />
-            <button class="btn" type="submit">Registrar Horas</button>
-      
+        <h1>Registrar Acción</h1>
+        <form action="registrar_accion.php" method="POST">
+            <input type="email" name="email" placeholder="Correo electrónico" required />
+            
+            <select name="accion" required>
+                <option value="ingreso">Ingreso</option>
+                <option value="egreso">Egreso</option>
+            </select>
+
+            <button class="btn" type="submit">Registrar</button>
+        </form>
+    </div>
+
+</body>
+</html>
