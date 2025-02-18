@@ -3,10 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Empleado - Página Principal</title>
+    <title>Empleado - Ingreso de Horas</title>
+    <style>
+        /* Estilos */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color: #f3f4f6;
+        }
+
+        .container {
+            margin: 20px auto;
+            width: 300px;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Bienvenido, Empleado</h1>
-    <p>Contenido exclusivo para empleados.</p>
-</body>
-</html>
+
+    <div class="container">
+        <h1>Registrar Horas</h1>
+        <form action="ingresar_horas.php" method="POST">
+            <input type="text" name="empleado_id" placeholder="ID de empleado" required />
+            <input type="number" name="horas_trabajadas" placeholder="Horas trabajadas" required />
+            <button class="btn" type="submit">Registrar Horas</button>
+      
