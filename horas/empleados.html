@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingreso de Empleado</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color: #f3f4f6;
+        }
+
+        .container {
+            margin: 20px auto;
+            width: 300px;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .back-btn {
+            background-color: #2196F3;
+        }
+
+        .back-btn:hover {
+            background-color: #0b7dda;
+        }
+
+        #successMessage {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        #successMessage button {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        #successMessage button:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Ingreso de Empleado</h1>
+
+        <!-- Formulario de entrada/egreso -->
+        <form id="ingresoEgresoForm">
+            <input type="email" id="emailEmpleado" placeholder="Correo del empleado" required>
+            <select id="accionEmpleado" required>
+                <option value="ingreso">Ingreso</option>
+                <option value="egreso">Egreso</option>
+            </select>
+            <button class="btn" type="submit">Guardar</button>
+        </form>
+
+        <!-- Botón para volver al index.html -->
+        <button class="btn back-btn" onclick="window.location.href='index.html'">Volver al Inicio</button>
+
+        <!-- Mensaje de éxito -->
+        <div id="successMessage">
+            <p>¡Guardado exitosamente!</p>
+            <button onclick="hideSuccessMessage()">Cerrar</button>
+        </div>
+    </div>
+
+    <script>
+        // Función para manejar el formulario y mostrar el mensaje de éxito
+        document.getElementById("ingresoEgresoForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            const email = document.getElementById("emailEmpleado").value;
+            const accion = document.getElementById("accionEmpleado").value;
+            const fecha = new Date();
+            const fechaString = `${fecha.getDate()}/${fecha.getMonth() + 1}/${fecha.getFullYear()}`;
+            const horaString = `${fecha.getHours()}:${fecha.getMinutes()}:${fecha.getSeconds()}`;
+
+            console.log(`Empleado: ${email}, Acción: ${accion}, Fecha: ${fechaString}, Hora: ${horaString}`);
+            // Aquí agregarías el código para guardar estos datos en la base de datos
+
+            // Mostrar el mensaje de éxito
+            document.getElementById("successMessage").style.display = "block";
+        });
+
+        // Función para ocultar el mensaje de éxito
+        function hideSuccessMessage() {
+            document.getElementById("successMessage").style.display = "none";
+        }
+    </script>
+
+</body>
+</html>
