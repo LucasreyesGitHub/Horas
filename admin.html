@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Administrador</title>
+    <title>Administrador - Ver Registros</title>
     <style>
+        /* Estilos */
         body {
             font-family: Arial, sans-serif;
-            text-align: center;
             padding: 50px;
             background-color: #f3f4f6;
         }
 
         .container {
             margin: 20px auto;
-            width: 300px;
+            width: 80%;
             padding: 30px;
             background-color: #ffffff;
             border-radius: 10px;
@@ -27,40 +27,67 @@
             color: #333;
         }
 
-        .btn {
+        table {
             width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
             padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
             background-color: #4CAF50;
             color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 10px 0;
-            font-size: 16px;
         }
 
-        .btn:hover {
-            background-color: #45a049;
-        }
-
-        .back-btn {
-            background-color: #2196F3;
-        }
-
-        .back-btn:hover {
-            background-color: #0b7dda;
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>Panel del Administrador</h1>
+        <h1>Registros de Ingreso/Egreso</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Email</th>
+                    <th>Acción</th>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>Timestamp</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                require_once('db_connect.php');
 
-        <!-- Aquí irían las funcionalidades del administrador, como ver y editar la base de datos. -->
+                $query = "SELECT * FROM registros ORDER BY timestamp DESC";
+                $result = $conn->query($query);
 
-        <!-- Botón para volver al index.html -->
-        <button class="btn back-btn" onclick="window.location.href='index.html'">Volver al Inicio</button>
+                if ($result->num_rows > 0) {
+                    while($row = $result->fetch_assoc()) {
+                        echo "<tr>
+                            <td>" . $row['email'] . "</td>
+                            <td>" . $row['accion'] . "</td>
+                            <td>" . $row['fecha'] . "</td>
+                            <td>" . $row['hora'] . "</td>
+                            <td>" . $row['timestamp'] . "</td>
+                        </tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='5'>No hay registros</td></tr>";
+                }
+
+                $conn->close();
+                ?>
+            </tbody>
+        </table>
     </div>
 
 </body>
